@@ -1,1 +1,28 @@
+#include "ros/ros.h"
+#include <sensor_msgs/LaserScan.h>
+#include <sensor_msgs/Imu.h>
+#include <nav_msgs/Odometry.h>
+#include <sensor_msgs/MagneticField.h>
+
+//mag节点
+//随便订阅了两个
+void doPerson4(const sensor_msgs::MagneticField::ConstPtr& person){
+    std::cout<<person->header<<std::endl;
+    std::cout<<person->magnetic_field<<std::endl;
+}
+int main(int argc, char *argv[])
+{
+    setlocale(LC_ALL,"");
+    ROS_INFO("订阅方实现");
+    ros::init(argc,argv,"rosbag");
+    ros::NodeHandle nh;
+
+    //mag节点
+    ros::Subscriber sub4 = nh.subscribe("/driver/mag",10,doPerson4);
+
+
+    ros::spin();
+
+    return 0;
+}
 
