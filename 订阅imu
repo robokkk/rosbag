@@ -1,0 +1,30 @@
+#include "ros/ros.h"
+#include <sensor_msgs/LaserScan.h>
+#include <sensor_msgs/Imu.h>
+#include <nav_msgs/Odometry.h>
+#include <sensor_msgs/MagneticField.h>
+
+
+
+//imu节点
+void doPerson2(const sensor_msgs::Imu::ConstPtr& person){
+    std::cout<<person->linear_acceleration<<person->angular_velocity<<person->header<<person->orientation<<std::endl;
+}
+
+
+int main(int argc, char *argv[])
+{
+    setlocale(LC_ALL,"");
+    ROS_INFO("订阅方实现");
+    ros::init(argc,argv,"rosbag");
+    ros::NodeHandle nh;
+   
+    //imu节点
+    ros::Subscriber sub2 = nh.subscribe("/driver/imu",10,doPerson2);
+
+    
+
+    ros::spin();
+
+    return 0;
+}
