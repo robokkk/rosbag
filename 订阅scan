@@ -1,0 +1,21 @@
+#include "ros/ros.h"
+#include <sensor_msgs/LaserScan.h>
+#include <sensor_msgs/Imu.h>
+#include <nav_msgs/Odometry.h>
+#include <sensor_msgs/MagneticField.h>
+
+//scan节点
+void doPerson(const sensor_msgs::LaserScan::ConstPtr& person){
+    ROS_INFO("订阅的人的信息：%2f,%2f",person->angle_min,person->angle_max);
+}
+nt main(int argc, char *argv[])
+{
+    setlocale(LC_ALL,"");
+    ROS_INFO("订阅方实现");
+    ros::init(argc,argv,"rosbag");
+    ros::NodeHandle nh;
+    
+    ros::spin();
+
+    return 0;
+}
