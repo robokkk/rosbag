@@ -1,0 +1,29 @@
+#include "ros/ros.h"
+#include <sensor_msgs/LaserScan.h>
+#include <sensor_msgs/Imu.h>
+#include <nav_msgs/Odometry.h>
+#include <sensor_msgs/MagneticField.h>
+
+
+//encoder节点
+void doPerson3(const nav_msgs::Odometry::ConstPtr& person){
+    std::cout<<person->header<<person->pose<<person->child_frame_id<<person->twist<<std::endl;
+}
+
+
+int main(int argc, char *argv[])
+{
+    setlocale(LC_ALL,"");
+    ROS_INFO("订阅方实现");
+    ros::init(argc,argv,"rosbag");
+    ros::NodeHandle nh;
+    
+
+    //encoder节点
+    ros::Subscriber sub3 = nh.subscribe("/driver/encoder",10,doPerson3);
+
+
+    ros::spin();
+
+    return 0;
+}
